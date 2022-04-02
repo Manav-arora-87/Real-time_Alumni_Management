@@ -1,0 +1,150 @@
+<!doctype html>
+
+<html lang="en">
+  {% load static %}
+  <head>
+  	<title>Sidebar 01</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  
+    <style>
+    body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100vh;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  overflow-x: scroll;
+  top: 0;
+  overflow-y:scroll;
+  left: 0;
+  {% comment %} background-color:#5f27cd; {% endcomment %}
+  background-color: rgba(0, 0, 0, 0.9);
+  
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color:#3498db
+}
+#mySidenav{
+  width:275px;
+  box-shadow: 4px 4px 4px 4px #a9a9a9;
+}
+
+.sidenav .closebtn {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  color:#3498db;
+  right: 25px;
+  font-size: 36px;
+  
+}
+.logo {
+    width: 150px;
+    height: 140px;
+    margin-top: 17px;
+    text-align:center;
+    padding: 2px;
+    
+}
+.logo-row {
+  width: 250px;
+  margin: 0 auto;
+  text-align:center;
+}
+
+.pd{
+  margin-left: 10px;
+  padding-right: 20px;
+}
+
+.sp{
+  margin-left: 50px;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+  </style>
+  </head>
+  <body>
+    
+    <div id="mySidenav" class="sidenav">
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div >
+          <div class= "logo-row">
+            <img  class="logo"  src="/static/mits_logo.jpg"  >
+          </div>
+  
+	        <ul class="list-unstyled components mb-5">
+            <li class="nav-item">
+              <a class="nav-link" href="/directorate-dashboard">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+            </li>
+      
+            <li class="nav-item">
+              <a class="nav-link" href="/mailinbox">
+                <i class="fas fa-fw fa-envelope"></i>
+                <span>Mail Box </span></a>
+            </li>
+      
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="/alumnidetails" >
+                <i class="fas fa-fw fa-id-card"></i>
+                <span>Alumni Details</span>
+              </a>
+              
+            </li>
+            
+      
+            <!-- Nav Item - Pages Collapse Menu -->
+      
+         
+                
+           
+           
+           
+      
+          
+          
+          
+           
+
+           
+	        </ul>
+
+	       
+
+	      </div>
+    	</nav>
+
+    
+		</div>
+    </div>
+  </body>
+</html>
+
