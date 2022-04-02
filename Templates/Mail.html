@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<style>
+    .img-profile {
+        height: 2rem;
+        width: 2rem;
+    }
+    .rounded-circle {
+        border-radius: 50%!important;
+    }
+    #mynav{
+      height:60px;
+      box-shadow: 4px 4px 4px 4px #a9a9a9;
+    }
+    .topbar .topbar-divider {
+        width: 0;
+        border-right: 1px solid #e3e6f0;
+        height: calc(4.375rem - 2rem);
+        margin: auto 1rem;}
+    img {
+            vertical-align: middle;
+            border-style: none;
+        }
+</style>
+<head>
+  <meta charset="utf-8">
+  <title> Directorate Dashboard </title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+ <!-- Custom fonts for this template-->
+ <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+ <!-- Custom styles for this template-->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+ <script src="http://office.praedicoglobalresearch.com/public/vendor/jquery/jquery.min.js"></script>
+ <script src="http://office.praedicoglobalresearch.com/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+ <!-- Core plugin JavaScript-->
+
+ <!-- Custom scripts for all pages-->
+
+ <!-- Page level plugins -->
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 
+ <!-- Page level custom scripts -->
+ <script src="/static/script.js"></script>  
+  <link rel="stylesheet" href="/static/table.css">  
+
+ <script type="text/javascript">
+  $(document).ready(function() {
+      $('#dataTable1').DataTable();
+      $('#dataTable2').DataTable();
+      $('#dataTable3').DataTable();
+      $('#dataTable4').DataTable();
+      $('#dataTable5').DataTable();
+      $('#dataTable6').DataTable();
+  } );
+</script>
+
+
+</head>
+{% include "sidebar_directorate.html" %}
+
+
+
+<body id="body" style="margin-left:300px;">
+  
+   
+  <!-- Topbar -->
+  
+  <nav id="mynav" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+    <!-- Sidebar Toggle (Topbar) -->
+    
+    <span>
+      <a class="" style="cursor: pointer;" onclick="toggleSidebar()"><i class="fas fa-fw fa-lg fa-bars"></i></a>
+    </span>
+
+    <script>
+      function toggleSidebar()
+      {
+        $("#mySidenav").fadeToggle();
+        
+        var a=$("#body").css('margin-left');
+        
+        if(a=='300px'){
+          $("#body").css('margin-left','-=300px');
+
+        }
+        else{
+        $("#body").css('margin-left','+=300px');
+        }
+      }
+    </script>
+
+    <style>
+      @media only screen and (max-width: 600px) {
+        #mySidenav{display: none;}
+      }
+    </style>
+
+    <marquee style="font-family: Comic Sans MS; color: red">
+      <i>"Mission to Innovate Technology for Society."</i>
+      <img src="http://office.praedicoglobalresearch.com/public/img/smiley.png" width="50px">
+    </marquee>
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+
+      <div class="topbar-divider d-flex d-sm-block"></div>
+
+      <!-- Nav Item - User Information -->
+      <li class="nav-item dropdown no-arrow" style="width:150px">
+          
+        <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            
+            <span class="ml-2 d-flex d-lg-inline text-gray-700 ">Administration</span>
+          
+                </a>
+
+     
+        <!-- Dropdown - User Information -->
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+          
+          <a class="dropdown-item"  href="#" data-toggle="modal" data-target="#passwordModal">
+            <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
+            Change Password
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+            Logout
+          </a>
+        </div>
+      </li>
+
+    </ul>
+
+  </nav>
+  <!-- End of Topbar -->
+
+
+<div>
+
+    
+
+
+    <h4 class="mt-2">Mail Box</h4>
+
+    <hr class="divider"><br>
+
+    
+    <div class="">
+      <button type="button" class="btn btn-success shadow" style="border-radius: 25px;" data-toggle="modal" data-target="#mailCompose">
+        <b><span class="fas fa-plus"></span> Compose</b>
+      </button>
+
+     
+    </div><br>
+
+    <div id="mailCompose" class="modal fade bd-example-modal-xl" role="dialog">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header bg-secondary text-light">
+            <b>Compose New Mail</b>
+            <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <form action="/sendmail/" method="post" enctype="multipart/form-data"> {% csrf_token %}
+    
+              
+                  <label><b>Title</b></label>  
+                  <input type="text" class="form-control" name="subject" placeholder="Enter Title" required>
+                  <br>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label><b>Forward To</b></label> 
+                      <div class="dropdown" >
+                        <input type="text" class=" form-control dropdown-toggle"  id="dropdownMenuButton1" data-bs-toggle="dropdown" value="-select-" aria-expanded="false">
+                        <div class="dropdown-menu"  aria-labelledby="dropdownMenuButton1">
+                        <input type="checkbox" id="option-all" onchange="checkall(this)">
+                        <label for="option-all"> Select All </label>
+                        <br/>
+                           {% for data in college %} 
+                          <input type="checkbox" name="email"  value="{{data.email}}">{{data.name}}<br/>
+                          {% endfor %}
+                          
+                        </div>
+                      </div> 
+                      {% comment %} <select class="form-control select2" name="MailForwardTo" style="width:100% !important;">
+                         
+                        <option><template class="__cf_email__" data-cfemail="4d0c2c3f383e25246374747d0d3d2a3f632e2220">[email&#160;protected]</template></option><option><template class="__cf_email__" data-cfemail="0445666c6d776c616f2a323036447463762a676b69">[email&#160;protected]</template></option><option><template class="__cf_email__" data-cfemail="b4f5d0ddc7dc9a858186f4c4d3c69ad7dbd9">[email&#160;protected]</template></option>
+
+                      </select>
+                       {% endcomment %}
+                    </div>
+                    <script>
+                        var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
+                        function checkall(mycheckbox){
+                            if(mycheckbox.checked == true){
+                                checkboxes.forEach(function(checkbox){
+                                    checkbox.checked = true ;
+                                });
+                            }
+                            else{
+                                checkboxes.forEach(function(checkbox){
+                                    checkbox.checked = false ;
+                                });
+
+                            }
+                        }
+                    </script>
+
+                    <div class="col-md-6">
+                      <label><b>Forward By</b></label>  
+                      <input type="text" readonly class="form-control" name="EmpId" value="aroramanav886@gmail.com" required>
+                    </div>
+                  </div>
+
+                  <br>
+
+                  <label><b>Description</b></label>  
+                  <!--<textarea class="form-control" name="description" placeholder="Write Description" required></textarea>-->  
+
+                  <textarea class="form-control mb-3" id="long_desc" rows="7" placeholder="Enter Message here..." name="content" required></textarea>
+
+                  <script>
+                    CKEDITOR.replace('long_desc',{
+                      
+                      width: "100%",
+                      height: "100px"
+
+                    }); 
+                  </script>        
+                  <br>            
+
+                 
+
+                  <button class="btn btn-info" type="submit" name="submit" id="submit">Send <i class="fas fa-fw fa-paper-plane"></i></button>
+                
+
+            </form> 
+          </div>
+        </div>
+      </div>
+    </div>   
+
+    <div class="card shadow">
+      
+      <div class="card-body" id="accordionMail" style="overflow-x:auto;">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <b>Primary Mails</b>
+          <thead>
+            <tr class="bg-secondary text-light">
+              <th>#</th>
+              <th>Subject</th>
+              <th>Date</th> 
+              <th>Sent To</th>
+              <th>More Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+             {% for mail in allmails %}
+            <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{mail.subject}}</td>
+            <td>{{mail.date}}</td>
+            <td>{{mail.email}}</td>
+            <td data-toggle="modal" data-target="#mailOpen67"onclick="emailupdatemodal('{{mail.subject}}','{{mail.date}}','{{mail.email}}','{{mail.content}}')" style="cursor: pointer;" class=""><span class="fas fa-envelope-open"></span></td>
+            </tr>
+            {% endfor %}
+        </tbody> 
+        </table>
+
+        
+      </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+<div id="mailOpen67" class="modal fade bd-example-modal-xl" role="dialog" data-backdrop="static">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div id="sub" class="modal-header bg-secondary text-light">
+        
+      </div>
+      <div class="modal-body">
+        <div id="" style="">
+          <p class="row">
+            <span class="col-md-8"><small><b id="fwdto"></b> </small></span>
+            <span class="col-md-4" id="date"></span>
+          </p><hr>
+          
+          <p id="content"></p>
+            <br><br>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-secondary" >Close</button>
+        {% comment %} <button type="submit" class="btn btn-primary" >Update</button> {% endcomment %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+  function emailupdatemodal(subject,date,email,content){
+    $('#sub').html(subject)
+    $('#fwdto').html(email)
+    $('#content').html(content)
+    $('#date').html(date)
+   console.log(subject,date,email,content)
+    
+  }
+  
+</script>
+  
+
+
+
+<!-- password modal -->
+<div class="modal fade"  id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalToggle" aria-hidden="true">
+<div class="modal-dialog modal-xl" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalToggle">Change Password </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      
+    <form id='changepwd' method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+        <div class="form-row">
+        
+            <div class="form-group col-md-12">
+              <label for="inputEmail4">Current Password</label>
+              <input type="password" class="form-control" id="currentpwd" name="currentpwd" placeholder="Current Password">
+            </div>
+          
+            <div class="form-group col-md-12">
+              <label for="inputEmail4">New password</label><br>
+              <input type="password" class="form-control" id="newpwd" name="newpwd" placeholder="New password">
+           </div>
+          
+           <div class="form-group col-md-12">
+              <label for="inputEmail4">Confirm password</label><br>
+              <input type="password" class="form-control" id="confirmpwd" name="confirmpwd" onkeyup="chk()" placeholder="Re-enter Password">
+              <span id="msg"></span> 
+          </div>
+            
+          </div>
+         
+    
+  </div>
+  <div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-secondary" >Close</button>
+    <button type="submit" class="btn btn-primary" >Update</button>
+  </div>
+</form>
+    </div>
+   </div>     
+  </div>
+
+
+<!-- Logout Modal-->
+
+
+
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body"><i style="color:green; font-family: Comic Sans MS;"><b>Good Job... You have no pending Task.</b> <span class="fas fa-thumbs-up" style="font-size:25px;"></span></i></div>
+  <div class="modal-footer">
+    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+    <a class="btn btn-primary" href="/logout">Logout</a>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  function chk(){
+    if(newpwd.value==confirmpwd.value)
+    {msg.innerHTML = "<font color='green'>Password Matched</fo  nt>"}
+    else
+    {msg.innerHTML = "<font color='red'>Password not matched</font>"}
+  
+    }    
+  
+    $("#changepwd").submit(function (e) {
+      
+        // preventing from page reload and default actions
+        e.preventDefault();
+        // serialize the data for sending the form data.
+        var serializedData = $(this).serialize();
+        
+        // make POST ajax call
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'directorate-changepassword' %}",
+            data: serializedData,
+            success: function (response) {
+              // console.log(response)
+              window.location.reload();
+              alert("Password Updated Successfully")
+    
+              
+            },
+            error: function (response) {
+                // alert the error if any error occured
+                //alert(response["responseJSON"]["error"]);
+                alert("Some Unknown Error Occured Please try after sometime..")
+                window.location.reload();
+            }
+        })
+    })
+  </script>
+  
+
+</body>
+
+
+</html>
+
