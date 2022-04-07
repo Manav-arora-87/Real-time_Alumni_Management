@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+{% comment %} <style>
+  .body{
+    background-image : {% url '/static/bg.png' %}
+  }
+</style> {% endcomment %}
+
 <html>
 
 <head>
@@ -39,10 +45,11 @@
 </head>
 
 
-<body style="background:#95a5a6">
+<body style="background-image: url(static/bg.png)">
+ 
     <marquee style="font-family: Comic Sans MS; color: red">
       <i>"Mission to Innovate Technology for Society."</i>
-      <img src="http://office.praedicoglobalresearch.com/public/img/smiley.png" width="50px">
+      {% comment %} <img src="http://office.praedicoglobalresearch.com/public/img/smiley.png" width="50px"> {% endcomment %}
     </marquee>
   <!-- End of Topbar -->
 
@@ -50,7 +57,7 @@
 <div>
 
 
-<a href="/directorate-login/"><button  type="button" class="btn btn-primary">Directorate Login</button></a>
+  &nbsp;&nbsp;<a href="/directorate-login/"><button  type="button" class="btn btn-primary">Directorate Login</button></a>
 <a href="/college-login/"><button  type="button" class="btn btn-primary">College Login</button></a>
 <a href="/alumni-login/"><button  type="button" class="btn btn-primary">Alumni Login</button></a>
 
@@ -121,19 +128,19 @@ padding:20px;
 max-width:600px;
 height:410px;
 padding:20px;
-background-color:#ffffff;
+
 }
 </style> <!-- new button at bottom just above footer -->
 
 <div id="boxes" >
-<div style="background-image: url(../img/footer1-bg.png);top: 199.5px;left: 551.5px; display: none; overflow: scroll;" id="dialog" class="window" style="color:#0000FF">
+<div style="background-image: url(../img/footer1-bg.png);top: 199.5px;left: 551.5px; display: none; " id="dialog" class="window" style="color:#0000FF">
 
 <a href="#" class="close"> <img src="/static/close.png"></img> </a>
 {% for event in events %}
 <strong><img src="/static/new.png" height="28" width="28"></img>
     
-    <a href="/static/events/{{event.eventfile}}/" target="_blank">{{event.eventfile}}</a>
-    
+    <a href="/static/events/{{event.eventfile}}/" target="_blank" style="font-size:20px;">{{event.eventfile}}</a>
+  
 </strong><br><br>
 {% endfor %}
 

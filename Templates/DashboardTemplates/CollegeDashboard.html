@@ -26,6 +26,8 @@
   <meta charset="utf-8">
   <title> College Dashboard </title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/stylemain.css">
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -113,7 +115,7 @@
 
     <marquee style="font-family: Comic Sans MS; color: red">
       <i>"Mission to Innovate Technology for Society."</i>
-      <img src="http://office.praedicoglobalresearch.com/public/img/smiley.png" width="50px">
+      {% comment %} <img src="http://office.praedicoglobalresearch.com/public/img/smiley.png" width="50px"> {% endcomment %}
     </marquee>
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
@@ -151,14 +153,7 @@
   <!-- End of Topbar -->
 
 
-<div>
-  <div class="" style="float:right;padding:20px 80px 20px;">
-    <button type="button" class="btn btn-success shadow" style="border-radius: 25px;" data-toggle="modal" data-target="#eventcreate">
-      <b><span class="fas fa-plus"></span> Create Event</b>
-    </button>
 
-   
-  </div>
 <!--Events-->
 <div id="eventcreate" class="modal fade bd-example-modal-xl" role="dialog">
   <div class="modal-dialog modal-xl">
@@ -182,9 +177,74 @@
   </div>
 </div>   
 
+<button data-toggle="modal" data-target="#eventcreate" style="float:right;margin-right:40px;" type="button" class="btn btn-primary position-relative">
+  Create Events
+ 
+</button>
 
 
     <h1>College</h1>
+
+    <div class="row">
+  
+
+
+      <div class="col-xl-3 col-sm-6  mb-4">
+        
+        <div class="icon-card-primary" >
+          <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+                  <img src="/static/job.png" alt="jobs" class="myicon" />
+                </div>
+                <p class="font-weight-medium mb-0">Home Page</p>
+              </div>
+            
+          </div>
+         
+        </div>
+      </div>
+    
+      <div class="col-xl-3 col-sm-6  mb-4">
+        
+        <div class="icon-card-primary" >
+          <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+                  <img src="/static/job.png" alt="jobs" class="myicon" />
+                </div>
+                <p class="font-weight-medium mb-0">Create Post</p>
+              </div>
+            
+          </div>
+         
+        </div>
+      </div>
+    
+    
+      <div class="col-xl-3 col-sm-6  mb-4">
+        
+        <div class="icon-card-primary" >
+          <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+                  <img src="/static/job.png" alt="jobs" class="myicon" />
+                </div>
+                <p class="font-weight-medium mb-0">NSTI Jobs</p>
+              </div>
+            
+          </div>
+         
+        </div>
+      </div>
+     
+    
+    
+    
+    </div>
+     
+    
+
 
 
     <section class="content-header ">
