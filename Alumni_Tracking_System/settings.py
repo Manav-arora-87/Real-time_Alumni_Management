@@ -80,9 +80,9 @@ DATABASES = {
     'default': {
         'NAME': 'alumnimanagement',
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'root',
-        'PASSWORD': 'Annu@786',
-        'HOST': 'localhost', 
+        'USER': 'admin',
+        'PASSWORD': '9131285337',
+        'HOST': 'database-1.cenwprx98qyc.us-east-1.rds.amazonaws.com', 
     }
 }
 
