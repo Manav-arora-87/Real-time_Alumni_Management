@@ -182,5 +182,5 @@ def ClgEventSubmit(request):
         return redirect('college-dashboard')
 
     except Exception as e:
-        return render(request,"DashboardTemplates/DirectorateDashboard.html")
+        return render(request,"DashboardTemplates/CollegeDashboard.html")
 

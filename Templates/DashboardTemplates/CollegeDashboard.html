@@ -312,7 +312,7 @@
               <th>Experience</th>
               <th>Passout Year</th>
               <th>Send Mail</th>
-              <th>Verifictation Status</th>
+              {% comment %} <th>Verifictation Status</th> {% endcomment %}
             </tr>
           </thead>
           <tbody>
@@ -327,7 +327,7 @@
           
             <td> <button data-toggle="modal" data-target="#mailCompose" class="btn btn-info" onclick="fillmail('{{data.email}}')"> <i class="fas fa-fw fa-paper-plane"></i></button>
            </td>
-            <td>
+            {% comment %} <td>
               {% csrf_token %}
               <a style="font-size: 15px; font-weight: bold;margin-top: -8px;">
                 {% if data.verification_status == 1 %}
@@ -341,7 +341,7 @@
                   Not Verified</div>
                 {% endif %}
               </a>
-            </td>
+            </td> {% endcomment %}
             
             </tr>
             {% endfor %}
