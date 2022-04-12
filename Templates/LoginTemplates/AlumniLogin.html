@@ -203,10 +203,10 @@ a {
                          <b>Alumni Login</b>
 
                     </div>
-                     <form action="/alumni-checklogin" method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+                     <form action="/alumni-checklogin/" method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
                     <div class="row px-3"> <label class="mb-1">
                             <h6 class="mb-0 text-sm">Email Address</h6>
-                        </label> <input class="mb-4"  name="emailid" id="emailid" type="email" placeholder="Enter a valid email address"> </div>
+                        </label> <input class="mb-4"  name="emailid" id="emailid" type="email" placeholder="Enter your college email address"> </div>
                     <div class="row px-3"> <label class="mb-1">
                             <h6 class="mb-0 text-sm">Password</h6>
                         </label> <input  id="password" name="password" type="password" placeholder="Enter password"> </div>

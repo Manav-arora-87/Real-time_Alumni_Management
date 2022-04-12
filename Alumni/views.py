@@ -9,18 +9,44 @@ from directorate.models import Alumni,College,Passingyear,Events
 from datetime import *
 from django.core.mail import EmailMultiAlternatives
 from Alumni_Tracking_System.settings import EMAIL_HOST_USER
+from django.contrib.auth import authenticate, login, logout
 
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 
-        
+import threading
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes, force_str, DjangoUnicodeDecodeError
+from .utils import generate_token
+from django.views.generic import View
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.contrib import messages
+# from validate_email import validate_email
+from django.contrib.auth.models import User
+
+domain={'mitsgwl.ac.in','sgsits.ac.in'}
+
+class EmailThread(threading.Thread):
+
+    def __init__(self, email_message):
+        self.email_message = email_message
+        threading.Thread.__init__(self)
+
+    def run(self):
+        self.email_message.send()       
+       
 
 # Create your views here.
 def AlumniLogin(request):
     try:
-        print("manav")
+        
         result = request.session['Alumni']
-        print("man")
+        
         return redirect("alumni-dashboard")
     except Exception as e:
+        print("error",e)
         return render(request,'LoginTemplates/AlumniLogin.html')
 
 def Logout(request):
@@ -37,7 +63,7 @@ def CheckAlumniLogin(request):
         emailid = request.POST['emailid']
         
         password = request.POST['password']
-        admin=Alumni.objects.get(email=emailid,verification_status=1)
+        admin=Alumni.objects.get(email=emailid,is_active=1)
         # # Adminlogins.ob
         if bcrypt.checkpw(password.encode("utf8"), admin.password.encode("utf8")):
             request.session['Alumni']=admin.id
@@ -56,45 +82,77 @@ def Alumnidashboard(request):
     try:
         result = request.session['Alumni']
         alumni=Alumni.objects.get(id=result)
-        college = College.objects.all()
-        year = Passingyear.objects.all()
+        # college = College.objects.all()
+        # year = Passingyear.objects.all()
         events=Events.objects.filter(cdid=alumni.collegeid.id) 
 
-        return render(request, "DashboardTemplates/AlumniDashboard.html",{'events':events,'alumni':alumni,'college':college,'year':year})
+        return render(request, "DashboardTemplates/AlumniDashboard.html",{'events':events,'alumni':alumni})
     except  Exception as e:
+        print("error",e)
         Logout(request) 
         return redirect('alumni-login')
 
 
 def AlumniRegister(request):
-    college = College.objects.all()
-    year = Passingyear.objects.all()
     
-    return render(request, "LoginTemplates/Alumniregistration.html",{'college':college,'year':year})
+    return render(request, "LoginTemplates/Alumniregistration.html")
+
+
 
 def Registeration(request):
    try: 
-    clg = int(request.POST['collegeid'])
-    name = request.POST['name']
-    email = request.POST['email']
-    phone = request.POST['phone']
-    passoutyear = request.POST['passoutyear']
-    exp = request.POST['exp']
-    currentjob = request.POST['currentjob']
+    clgemail = request.POST['clgmail']
+    if clgemail not in domain:
+         return JsonResponse({"error": "Your coleege is not yet registered !!!"}, status=400)
+        
+    pwd = request.POST['password']
     salt= bcrypt.gensalt()
-    hashed = bcrypt.hashpw(phone.encode("utf8"),salt)
+    hashed = bcrypt.hashpw(pwd.encode("utf8"),salt)
     hashed=(hashed.decode("utf8"))
-    collegeid = College.objects.get(id=clg).id
-    t=Alumni.objects.create(collegeid_id = College.objects.get(id=clg).id , name=name,email=email,phone=phone,passout_year=passoutyear,experience=exp,current_job=currentjob,verification_status=0,registration_status=1,password=hashed) 
+    t=Alumni.objects.create(email=clgemail,is_active=0,collegeid_id = 1,password=hashed) #clgid needs to be removed
     t.save()
-    subject="Login Credentials"
-    content="You are now successfully registered Your default login id is {} and Password is {}".format(email,phone)
-    msg = EmailMultiAlternatives(f'{subject}',f'{content}',EMAIL_HOST_USER,[f'{email}'])
-    msg.send()
-    
-    return JsonResponse({"status": "done"}, status=200)
+    current_site = get_current_site(request)
+    email_subject = 'Active your Account'
+    message = render_to_string('auth/activate.html',
+                                   {
+                                       'user': t,
+                                       'domain': current_site.domain,
+                                       'uid': urlsafe_base64_encode(force_bytes(t.pk)),
+                                       'token': generate_token.make_token(t)
+                                   }
+                                   )
+
+    email_message = EmailMessage(
+            email_subject,
+            message,
+            settings.EMAIL_HOST_USER,
+            [clgemail]
+        )
+
+    EmailThread(email_message).start()
+    messages.add_message(request, messages.SUCCESS,
+                             'account created succesfully')
+
+    return redirect('alumni-login') 
    except Exception as e:
-       return JsonResponse({"error": "Status not upadated "}, status=400)
+     print (e)
+     return JsonResponse({"error": "Status not upadated "}, status=400)
+
+
+class ActivateAccountView(View):
+    def get(self, request, uidb64, token):
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = Alumni.objects.get(pk=uid)
+        except Exception as identifier:
+            user = None
+        if user is not None and generate_token.check_token(user, token):
+            user.is_active = True
+            user.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 'account activated successfully')
+            return redirect('alumni-login')
+        return render(request, 'auth/activate_failed.html', status=401)
 
 
 
@@ -135,15 +193,15 @@ def AlumniUpdateprofile(request):
         result = request.session['Alumni']
         
         if is_ajax(request=request) and request.method == "POST":
-            clg = int(request.POST['collegeid'])
-            name = request.POST['name']
-            email = request.POST['email']
-            phone = request.POST['phone']
-            passoutyear = request.POST['passoutyear']
-            exp = request.POST['exp']
-            currentjob = request.POST['currentjob']
         
-            Alumni.objects.filter(id=result).update(collegeid_id = College.objects.get(id=clg).id , name=name,email=email,phone=phone,passout_year=passoutyear,experience=exp,current_job=currentjob) 
+            name = request.POST.get('name',None)
+            email = request.POST.get('email',None)
+            phone = request.POST.get('phone',0)
+            passoutyear = request.POST.get('passoutyear',None)
+            exp = request.POST.get('exp',None)
+            currentjob = request.POST.get('currentjob',None)
+        
+            Alumni.objects.filter(id=result).update( name=name,email=email,phone=phone,passout_year=passoutyear,experience=exp,current_job=currentjob) 
                  
             # EmailService.SendMail(email_id,"Hi your default password is {}".format(contact_number))
 
@@ -155,6 +213,7 @@ def AlumniUpdateprofile(request):
     # some error occured
         return JsonResponse({"error": "User Exists"}, status=400)
     except  Exception as e:
+            print(e)
             return JsonResponse({"error": "User Exists"}, status=400)
 
 

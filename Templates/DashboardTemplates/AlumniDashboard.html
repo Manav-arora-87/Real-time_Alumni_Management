@@ -51,7 +51,25 @@
    align-items:center;
    width:400px;
  }
+ body {
+  background-color: #eee
+}
 
+.time {
+  font-size: 9px !important
+}
+
+.socials i {
+  margin-right: 14px;
+  font-size: 17px;
+  color: #d2c8c8;
+  cursor: pointer
+}
+
+.feed-image img {
+  width: 100%;
+  height: auto
+}
 </style>
 
 <head>
@@ -154,7 +172,7 @@
           
         <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             
-            <span class="ml-2 d-flex d-lg-inline text-gray-700 small"> {{alumni.name}}</span>
+            <span class="ml-2 d-flex d-lg-inline text-gray-700 small"> {{alumni.email}}</span>
           
                 </a>
 
@@ -218,7 +236,21 @@
      
     </div>
   </div>
-
+  <div class="col-xl-3 col-sm-6  mb-4">
+    
+    <div class="icon-card-primary" >
+      <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
+              <img src="/static/job.png" alt="jobs" class="myicon" />
+            </div>
+            <p class="font-weight-medium mb-0" >Write an Article</p>
+          </div>
+        
+      </div>
+     
+    </div>
+  </div>
   <div class="col-xl-3 col-sm-6  mb-4">
     
     <div class="icon-card-primary" >
@@ -251,21 +283,7 @@
      
     </div>
   </div>
-  <div class="col-xl-3 col-sm-6  mb-4">
-    
-    <div class="icon-card-primary" >
-      <div class="card-body">
-          <div class="d-flex align-items-center">
-            <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
-              <img src="/static/job.png" alt="jobs" class="myicon" />
-            </div>
-            <p class="font-weight-medium mb-0" >Chat Notification</p>
-          </div>
-        
-      </div>
-     
-    </div>
-  </div>
+  
 
 
 
@@ -273,13 +291,167 @@
  
 
 
-  <style type="text/css">
-  a {color:#333; text-decoration:none}
-  a:hover {color:#ccc; text-decoration:none}
-  </style> <!-- new button at bottom just above footer -->
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container mt-4 mb-5">
+  <div class="d-flex justify-content-center row">
+      <div class="col-md-8">
+          <div class="feed p-2">
+              <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white border">
+                  <div class="feed-text px-2">
+                      <h6 class="text-black-50 mt-2">What's on your mind</h6>
+                  </div>
+                  <div class="feed-icon px-2"><i class="fa fa-long-arrow-up text-black-50"></i></div>
+              </div>
+              <div class="bg-white border mt-2">
+                  <div>
+                      <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
+                          <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="https://i.imgur.com/aoKusnD.jpg" width="45">
+                              <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben</span><span class="text-black-50 time">40 minutes ago</span></div>
+                          </div>
+                          <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
+                      </div>
+                  </div>
+                  <div class="p-2 px-3"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
+                  <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
+              </div>
+              <div class="bg-white border mt-2">
+                  <div>
+                      <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
+                          <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="https://i.imgur.com/aoKusnD.jpg" width="45">
+                              <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben</span><span class="text-black-50 time">40 minutes ago</span></div>
+                          </div>
+                          <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
+                      </div>
+                  </div>
+                  <div class="feed-image p-2 px-3"><img class="img-fluid img-responsive" src="https://i.imgur.com/aoKusnD.jpg"></div>
+                  <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg-dark text-center text-white">
+  <!-- Grid container -->
+  <div class="container p-4">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+     
+
+      <!-- Twitter -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+     
+
+      <!-- Instagram -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-linkedin-in"></i
+      ></a>
+
+      <!-- Github -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Form -->
+    <section class="">
+      <form action="">
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+          <!--Grid column-->
+          <div class="col-auto">
+            <p class="pt-2">
+              <strong>Sign up for our newsletter</strong>
+            </p>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-5 col-12">
+            <!-- Email input -->
+            <div class="form-outline form-white mb-4">
+              <input type="email" id="form5Example21" class="form-control" />
+              <label class="form-label" for="form5Example21">Email address</label>
+            </div>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-auto">
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-outline-light mb-4">
+              Subscribe
+            </button>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </form>
+    </section>
+    <!-- Section: Form -->
+
+   
+
+    <!-- Section: Links -->
+    <section class="">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col">
+          
+          <ul class="list-unstyled mb-0">
+            <li>You are logged in as
+              <a href="#!" class="text-white"> 0901ET191034 MANAV ARORA (Log out)</a>
+            </li>
+            <li>
+              <a href="#!" class="text-white">Terms and Conditions</a>
+            </li>
+          </ul>
+        </div>
+
+
+        
+      </div>
+      <!--Grid row-->
+    </section>
+    <!-- Section: Links -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2022 Copyright:
+    <a class="text-white" href="#">DTE-PORTAL</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
 
 
 
@@ -414,7 +586,7 @@
     <div class="modal-content">
  
       <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalToggle">{{alumni.name}}'s Profile </h5>
+      <h5 class="modal-title" id="exampleModalToggle">{{alumni.email}}'s Profile </h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -432,7 +604,7 @@
            
             <div class="row gap">
               <div class="col">
-                <Select id="collegeid" name="collegeid"   class="form-control" required>
+                <Select id="collegeid" name="collegeid"   class="form-control" >
                   <option  selected disabled >-select college-</option>
                   {% for data in college %}
                   <option value="{{data.id}}"  {% if alumni.collegeid.id == data.id %} selected {% endif %} >{{data.name}}</option>
@@ -442,22 +614,22 @@
             </div>
             <div class="row gap">
               <div class="col">
-              <input type="text" name="name" id="name" class="form-control" value="{{alumni.name}}" placeholder="Full Name" required>
+              <input type="text" name="name" id="name" class="form-control" value="{{alumni.name}}" placeholder="Full Name">
                </div>
             </div>
             <div class="row gap">
               <div class="col">
-              <input type="email" name="email" id="email" class="form-control" value="{{alumni.email}}" placeholder="Email" required>
+              <input type="email" name="email" id="email" class="form-control" value="{{alumni.email}}" placeholder="Email" >
                </div>
             </div>
             <div class="row gap">
               <div class="col">
-              <input type="tel" name="phone" id="phone" class="form-control" value="{{alumni.phone}}" pattern="[0-9]{10}" placeholder="Phone" required>
+              <input type="tel" name="phone" id="phone" class="form-control" value="{{alumni.phone}}" pattern="[0-9]{10}" placeholder="Phone" >
                </div>
             </div>
             <div class="row gap">
               <div class="col">
-                <Select id="passoutyear" name="passoutyear"   class="form-control" required>
+                <Select id="passoutyear" name="passoutyear"   class="form-control">
                   <option  selected disabled >Passout Year</option>
                   {% for data in year %}
                   <option value="{{data.year}}"  {% if alumni.passout_year == data.year %} selected {% endif %} >{{data.year}}</option>
@@ -467,12 +639,12 @@
             </div>
             <div class="row gap">
               <div class="col">
-              <input type="text" name="exp" id="exp" value="{{alumni.experience}}" class="form-control" placeholder="Experience in years" required>
+              <input type="text" name="exp" id="exp" value="{{alumni.experience}}" class="form-control" placeholder="Experience in years">
                </div>
             </div>
             <div class="row gap">
               <div class="col">
-              <input type="text" name="currentjob" id="currentjob" value="{{alumni.current_job}}" class="form-control" placeholder="Current Job" required>
+              <input type="text" name="currentjob" id="currentjob" value="{{alumni.current_job}}" class="form-control" placeholder="Current Job">
                </div>
             </div>
             

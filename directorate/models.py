@@ -17,9 +17,9 @@ class Alumni(models.Model):
     passout_year = models.IntegerField(db_column='Passout_year')  # Field name made lowercase.
     experience = models.CharField(db_column='Experience', max_length=200)  # Field name made lowercase.
     current_job = models.CharField(db_column='Current_job', max_length=200)  # Field name made lowercase.
-    verification_status = models.IntegerField(db_column='Verification_status')  # Field name made lowercase.
     registration_status = models.IntegerField(db_column='Registration_status')  # Field name made lowercase.
     password = models.CharField(db_column='Password', max_length=100)  # Field name made lowercase.
+    is_active = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False

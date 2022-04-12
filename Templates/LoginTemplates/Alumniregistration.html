@@ -36,78 +36,51 @@
           <meta charset="UTF-8">
           <title>Alumni Registration</title>
       </head>
-      <body class="root" style="background-color:#dfe6e9">
+    <body class="root" style="background-image: url(/static/bg.png)">
+     
         
-      <form id="alumniregisteration" method="post" enctype="multipart/form-data"> {% csrf_token %}
+      <form id="alumniregisteration" method="post" enctype="multipart/form-data" autocomplete="off"> {% csrf_token %}
       <div class="root">
       <div class="myframe">
           <div class="row" style="display:flex;margin-bottom:10px;font-size:14px;font-weight:bold;letter-spacing:1px;justify-content:center;align-items:center;">
              
-             Alumni
+             Alumni Registration
           </div>
-          <div class="row">
-             <div class="col">
-                 <Select id="collegeid" name="collegeid" class="form-control">
-                      <option>-Select College-</option>
-                      {% for data in college %}
-                      <option value="{{data.id}}">{{data.name}}</option>
-                      {% endfor %}
-                  </Select>
-              </div>
-          </div>
-      
+
           <div class="row gap">
             <div class="col">
-            <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+            <input type="text" name="clgmail" class="form-control" placeholder="Enter College Mail Id" required>
              </div>
           </div>
           <div class="row gap">
             <div class="col">
-            <input type="email" name="email" class="form-control" placeholder="Email" required>
+            <input type="Password" name="password" id="password" class="form-control" placeholder="Create Password" required>
              </div>
           </div>
           <div class="row gap">
             <div class="col">
-            <input type="tel" name="phone" class="form-control" pattern="[0-9]{10}" placeholder="Phone" required>
+            <input type="Password" name="password" id="chkpassword" onkeyup="chk()" class="form-control" placeholder="Confirm Password" required>
              </div>
-          </div>
-          <div class="row gap">
-            <div class="col">
-              <Select id="passoutyear" name="passoutyear" class="form-control" required>
-                <option  selected disabled >Passout Year</option>
-                {% for data in year %}
-                <option value="{{data.year}}">{{data.year}}</option>
-                {% endfor %}
-            </Select>
-             </div>
-          </div>
-          <div class="row gap">
-            <div class="col">
-            <input type="text" name="exp" class="form-control" placeholder="Experience in years" required>
-             </div>
-          </div>
-          <div class="row gap">
-            <div class="col">
-            <input type="text" name="currentjob" class="form-control" placeholder="Current Job" required>
-             </div>
+             <div id="msg"></div>
           </div>
           
   
          
          <div class="row gap">
           <div class="col btnstyle">
-            <button type="Submit" class="btn btn-success w-100" >Submit</button>
+            <button type="Submit" class="btn btn-success w-100" >Register</button>
           </div>
-          <div class="col btnstyle">
-            <button type="Reset" class="btn btn-success w-100" >Reset</button>
-          </div>
-
+        
           
         
       </div>
       <div class="row gap">
+        <div class="col">
+
         <div> <small class="font-weight-bold">Already have an account? <a href="/alumni-login/" class="text-danger ">Sign in</a></small> </div>
      </div>
+    </div>
+    <div>{{msg}}</div>
   
       </div>
       </form>
@@ -130,7 +103,7 @@
               data: serializedData,
               success: function (response) {
                 // console.log(response)
-                window.location.reload();
+               
                 alert("You are Successfully registered  Your login credentials sent to your mail ID")
       
                 
@@ -143,5 +116,17 @@
           })
       })
           </script>
-         
+        
+          
+          <script>
+            function chk(){
+              
+              if(password.value==chkpassword.value)
+              {msg.innerHTML = "<font color='green'>Password Matched</font>"  
+              }
+              else
+              {msg.innerHTML = "<font color='red'>Password not matched</font>"}
+            
+              }    
+            </script>    
        </html>

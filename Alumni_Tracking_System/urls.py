@@ -23,6 +23,6 @@ urlpatterns = [
     path('', include('Alumni.urls')),
     path('', include('college.urls')),
     path('', include('directorate.urls')),
-    path('dteportal',views.DTEportal,name='dteportal'),
+    path('',views.DTEportal,name='dteportal'),
 
 ]
