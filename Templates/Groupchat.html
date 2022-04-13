@@ -26,10 +26,11 @@
      align-items:center;
      width:400px;
    }
-   body{
-      background-color: #f4f7f6;
-      margin-top:20px;
-  }
+   
+  #body {
+    background: #bdc3c7
+   
+}
   .card {
       background: #fff;
       transition: .5s;
@@ -330,7 +331,7 @@
   </head>
 {% include "sidebar_alumni.html" %}
 
-  <body  id="body" style="margin-left:300px;">
+  <body  id="body" style="margin-left:300px;margin-right:20px;">
    
     <div class="container mt-3 mb-3">
         {% comment %} <input type="text" id="message-input" name="message-input" class="form-control" placeholder="your message"> {% endcomment %}
@@ -386,17 +387,14 @@
           
         <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             
-            <span id="username" class="ml-2 d-flex d-lg-inline text-gray-700 small"> {{alumni.name}}</span>
+            <span id="username" class="ml-2 d-flex d-lg-inline text-gray-700 small"> {{alumni.email}}</span>
           
                 </a>
 
      
         <!-- Dropdown - User Information -->
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-          <a class="dropdown-item" id="scriptmodal" href="#" data-toggle="modal" data-target="#profileModal">
-            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-            Profile
-          </a>
+         
           <a class="dropdown-item"  href="#" data-toggle="modal" data-target="#passwordModal">
             <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
             Change Password
@@ -460,7 +458,116 @@
 </div>
 </div>
 
-    
+   
+
+
+
+<!-- Footer -->
+<footer class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+       
+  
+        <!-- Twitter -->
+        <a class="btn btn-outline-light btn-floating m-1" href="{{alumni.twiter}}" role="button"
+          ><i class="fab fa-twitter"></i
+        ></a>
+  
+       
+  
+        <!-- Instagram -->
+        <a class="btn btn-outline-light btn-floating m-1" href="{{alumni.instagram}}" role="button"
+          ><i class="fab fa-instagram"></i
+        ></a>
+  
+        <!-- Linkedin -->
+        <a class="btn btn-outline-light btn-floating m-1" href="{{alumni.linkedin}}" role="button"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+  
+        <!-- Github -->
+        <a class="btn btn-outline-light btn-floating m-1"  href="{{alumni.github}}" role="button"
+          ><i class="fab fa-github"></i
+        ></a>
+      </section>
+      <!-- Section: Social media -->
+  
+      <!-- Section: Form -->
+      <section class="">
+        <form action="">
+          <!--Grid row-->
+          <div class="row d-flex justify-content-center">
+            <!--Grid column-->
+            <div class="col-auto">
+              <p class="pt-2">
+                <strong>Sign up for our newsletter</strong>
+              </p>
+            </div>
+            <!--Grid column-->
+  
+            <!--Grid column-->
+            <div class="col-md-5 col-12">
+              <!-- Email input -->
+              <div class="form-outline form-white mb-4">
+                <input type="email" id="form5Example21" class="form-control" />
+                <label class="form-label" for="form5Example21">Email address</label>
+              </div>
+            </div>
+            <!--Grid column-->
+  
+            <!--Grid column-->
+            <div class="col-auto">
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-outline-light mb-4">
+                Subscribe
+              </button>
+            </div>
+            <!--Grid column-->
+          </div>
+          <!--Grid row-->
+        </form>
+      </section>
+      <!-- Section: Form -->
+  
+     
+  
+      <!-- Section: Links -->
+      <section class="">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          <div class="col">
+            
+            <ul class="list-unstyled mb-0">
+              <li>You are logged in as
+                <a href="/alumni-logout" class="text-white"> {{alumni.email}} (Log out)</a>
+              </li>
+              <li>
+                <a href="#!" class="text-white">Terms and Conditions</a>
+              </li>
+            </ul>
+          </div>
+  
+  
+          
+        </div>
+        <!--Grid row-->
+      </section>
+      <!-- Section: Links -->
+    </div>
+    <!-- Grid container -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Copyright:
+      <a class="text-white" href="#">DTE-PORTAL</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+  
 
 
 

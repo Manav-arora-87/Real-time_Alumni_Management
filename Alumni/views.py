@@ -5,7 +5,8 @@ from django.http import JsonResponse
 from django.db.models import Q,Count
 from django.http import HttpResponseRedirect
 import bcrypt
-from directorate.models import Alumni,College,Passingyear,Events
+import uuid,os
+from directorate.models import Alumni,College,Passingyear,Events,Articles,Posts
 from datetime import *
 from django.core.mail import EmailMultiAlternatives
 from Alumni_Tracking_System.settings import EMAIL_HOST_USER
@@ -82,15 +83,35 @@ def Alumnidashboard(request):
     try:
         result = request.session['Alumni']
         alumni=Alumni.objects.get(id=result)
+        articles=reversed(Articles.objects.filter(alumniid=result))
+        posts=reversed(Posts.objects.filter(alumni_id=result))
+        
         # college = College.objects.all()
         # year = Passingyear.objects.all()
         events=Events.objects.filter(cdid=alumni.collegeid.id) 
 
-        return render(request, "DashboardTemplates/AlumniDashboard.html",{'events':events,'alumni':alumni})
+        return render(request, "DashboardTemplates/AlumniDashboard.html",{'posts':posts,'articles':articles,'events':events,'alumni':alumni})
     except  Exception as e:
         print("error",e)
         Logout(request) 
         return redirect('alumni-login')
+
+
+def Alumniprofile(request):
+    
+    try:
+        result = request.session['Alumni']
+        alumni=Alumni.objects.get(id=result)
+        # college = College.objects.all()
+        # year = Passingyear.objects.all()
+        events=Events.objects.filter(cdid=alumni.collegeid.id) 
+
+        return render(request, "Alumniprofile.html",{'events':events,'alumni':alumni})
+    except  Exception as e:
+        print("error",e)
+        Logout(request) 
+        return redirect('alumni-login')
+
 
 
 def AlumniRegister(request):
@@ -102,7 +123,8 @@ def AlumniRegister(request):
 def Registeration(request):
    try: 
     clgemail = request.POST['clgmail']
-    if clgemail not in domain:
+    last= clgemail.split('@')
+    if last[1] not in domain:
          return JsonResponse({"error": "Your coleege is not yet registered !!!"}, status=400)
         
     pwd = request.POST['password']
@@ -187,6 +209,52 @@ def AlumniUpdatepassword(request):
             return JsonResponse({"error": "Status not upadated "}, status=400)
 
 
+
+
+def Alumnipostarticle(request):
+    try:
+        result = request.session['Alumni']
+        heading = request.POST.get('heading',None)
+        article = request.POST.get('article',None)
+        t=Articles.objects.create(article=article,alumniid_id=result,heading=heading)
+
+        print(heading,article)
+             
+            
+        return JsonResponse({"status": "done"}, status=200)
+
+    # some error occured
+    except  Exception as e:
+            print(e)
+            return JsonResponse({"error": "Status not upadated "}, status=400)
+
+
+
+
+def Alumnipost(request):
+    try:
+        result = request.session['Alumni']
+        picture = request.FILES['upload']
+        filename = str(uuid.uuid4())+picture.name[picture.name.rfind('.'):]
+        t=Posts.objects.create(post=filename,alumni_id=result)
+        F = open('F:/REALTIME_ALUMNI_MANAGEMENT/assets/posts/'+filename,"wb")
+        for chunk in picture.chunks():
+            F.write(chunk)
+            F.close()
+              
+            
+        return JsonResponse({"status": "done"}, status=200)
+
+    # some error occured
+    except  Exception as e:
+            print(e)
+            return JsonResponse({"error": "Status not upadated "}, status=400)
+
+
+
+
+
+
 def AlumniUpdateprofile(request):
     
     try:
@@ -195,13 +263,16 @@ def AlumniUpdateprofile(request):
         if is_ajax(request=request) and request.method == "POST":
         
             name = request.POST.get('name',None)
-            email = request.POST.get('email',None)
-            phone = request.POST.get('phone',0)
-            passoutyear = request.POST.get('passoutyear',None)
-            exp = request.POST.get('exp',None)
-            currentjob = request.POST.get('currentjob',None)
-        
-            Alumni.objects.filter(id=result).update( name=name,email=email,phone=phone,passout_year=passoutyear,experience=exp,current_job=currentjob) 
+            phone = request.POST.get('phone',None)
+            current_job = request.POST.get('current_job',None)
+            currentjob_location = request.POST.get('currentjob_location',None)
+            experience = request.POST.get('experience',None)
+            github = request.POST.get('github',None)
+            linkedin = request.POST.get('linkedin',None)
+            twitter = request.POST.get('twitter',None)
+            instagram = request.POST.get('instagram',None)
+            print(name,phone,current_job,currentjob_location,experience,github,linkedin,twitter,instagram)
+            Alumni.objects.filter(id=result).update(name=name,phone=phone,experience=experience,current_job=current_job,currentjob_location=currentjob_location,github=github,twiter=twitter,linkedin=linkedin,instagram=instagram) 
                  
             # EmailService.SendMail(email_id,"Hi your default password is {}".format(contact_number))
 

@@ -51,9 +51,7 @@
    align-items:center;
    width:400px;
  }
- body {
-  background-color: #eee
-}
+ 
 
 .time {
   font-size: 9px !important
@@ -69,6 +67,10 @@
 .feed-image img {
   width: 100%;
   height: auto
+}
+#body {
+  background: #bdc3c7
+ 
 }
 </style>
 
@@ -114,7 +116,7 @@
 
 
 
-<body id="body" style="margin-left:300px;">
+<body id="body" style="margin-left:300px;margin-right:20px;">
   
    
   <!-- Topbar -->
@@ -179,10 +181,7 @@
      
         <!-- Dropdown - User Information -->
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-          <a class="dropdown-item" id="scriptmodal" href="#" data-toggle="modal" data-target="#profileModal">
-            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-            Profile
-          </a>
+         
           <a class="dropdown-item"  href="#" data-toggle="modal" data-target="#passwordModal">
             <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
             Change Password
@@ -244,7 +243,9 @@
             <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
               <img src="/static/job.png" alt="jobs" class="myicon" />
             </div>
-            <p class="font-weight-medium mb-0" >Write an Article</p>
+            <a data-toggle="modal" data-target="#articleModal">
+            <p class="font-weight-medium mb-0"  >Write an Article</p>
+            </a>
           </div>
         
       </div>
@@ -259,7 +260,9 @@
             <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
               <img src="/static/job.png" alt="jobs" class="myicon" />
             </div>
+            <a data-toggle="modal" data-target="#postModal">
             <p class="font-weight-medium mb-0">Create Post</p>
+            </a>
           </div>
         
       </div>
@@ -308,37 +311,47 @@
   <div class="d-flex justify-content-center row">
       <div class="col-md-8">
           <div class="feed p-2">
-              <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white border">
-                  <div class="feed-text px-2">
-                      <h6 class="text-black-50 mt-2">What's on your mind</h6>
-                  </div>
-                  <div class="feed-icon px-2"><i class="fa fa-long-arrow-up text-black-50"></i></div>
-              </div>
+             {% for article in articles %}
+              
               <div class="bg-white border mt-2">
                   <div>
                       <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
-                          <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="https://i.imgur.com/aoKusnD.jpg" width="45">
-                              <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben</span><span class="text-black-50 time">40 minutes ago</span></div>
+                          <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" width="45">
+                              <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">{{alumni.name}}</span></div>
+                          </div>
+                         
+                        
+                          <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
+                      </div>
+                  </div>
+                  <div class="d-flex flex-row align-items-center feed-text px-2">
+                    <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">{{article.heading}}</span></div>
+                </div>
+                  <div class="p-2 px-3"><span>{{article.article}}</span></div>
+                  <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
+              </div>
+              {% endfor %}
+
+
+              {% for post in posts %}
+
+              <div class="bg-white border mt-2">
+                  <div>
+                      <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
+                          <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" width="45">
+                              <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">{{alumni.name}}</span></div>
                           </div>
                           <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
                       </div>
                   </div>
-                  <div class="p-2 px-3"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
+                  <div class="feed-image p-2 px-3"><img class="img-fluid img-responsive" src="/static/posts/{{post.post}}"></div>
                   <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
               </div>
-              <div class="bg-white border mt-2">
-                  <div>
-                      <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
-                          <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="https://i.imgur.com/aoKusnD.jpg" width="45">
-                              <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben</span><span class="text-black-50 time">40 minutes ago</span></div>
-                          </div>
-                          <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
-                      </div>
-                  </div>
-                  <div class="feed-image p-2 px-3"><img class="img-fluid img-responsive" src="https://i.imgur.com/aoKusnD.jpg"></div>
-                  <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
-              </div>
-          </div>
+         
+              {% endfor %}
+
+
+            </div>
       </div>
   </div>
 </div>
@@ -356,24 +369,24 @@
      
 
       <!-- Twitter -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" href="{{alumni.twiter}}" role="button"
         ><i class="fab fa-twitter"></i
       ></a>
 
      
 
       <!-- Instagram -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" href="{{alumni.instagram}}" role="button"
         ><i class="fab fa-instagram"></i
       ></a>
 
       <!-- Linkedin -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" href="{{alumni.linkedin}}" role="button"
         ><i class="fab fa-linkedin-in"></i
       ></a>
 
       <!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-outline-light btn-floating m-1"  href="{{alumni.github}}" role="button"
         ><i class="fab fa-github"></i
       ></a>
     </section>
@@ -427,7 +440,7 @@
           
           <ul class="list-unstyled mb-0">
             <li>You are logged in as
-              <a href="#!" class="text-white"> 0901ET191034 MANAV ARORA (Log out)</a>
+              <a href="/alumni-logout" class="text-white"> {{alumni.email}} (Log out)</a>
             </li>
             <li>
               <a href="#!" class="text-white">Terms and Conditions</a>
@@ -460,6 +473,55 @@
 
 
 
+<!-- post modal -->
+
+<div class="modal fade"  id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalToggle" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalToggle">Create Post Here</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        
+      <form action="/alumni-post/" method="post" enctype="multipart/form-data">{% csrf_token %}
+          
+        <div class="bg-white border mt-2">
+          <style type="text/css">
+            .image:hover .img{
+              opacity:0.5;
+            }
+            #upload{
+              display: none;
+            }
+          </style>
+          <script type="text/javascript">
+            $(function(){
+                $("#upload_link").on('click', function(e){
+                    e.preventDefault();
+                    $("#upload:hidden").trigger('click');
+                });
+            });
+          </script>
+          <div class="feed-image p-2 px-3">
+            <input id="upload" type="file"  name="upload" onchange="uploadfile()" />
+            <input type="submit" style="display: none;">
+            <a href="#" id="upload_link" class="img">
+              <img class="img-fluid img-responsive" src="/static/noimg.png">
+            </a>
+            </div>
+          <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
+      </div>
+ 
+        
+      
+    </div>
+  </form>
+      </div>
+     </div>     
+    </div>
 
 
 
@@ -513,6 +575,56 @@
      </div>     
     </div>
   
+
+
+
+
+
+
+
+
+
+<!-- article modal -->
+
+<div class="modal fade"  id="articleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalToggle" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalToggle">Write Article Here</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        
+      <form id='articles' method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+          
+        <div class="form-row">
+          
+          <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="heading" name="heading" placeholder="Heading..">
+          </div>
+          
+        </div>
+    
+        <div class="form-row">
+          
+              <div class="form-group col-md-12">
+                <textarea rows="6" class="form-control" id="article" name="article" placeholder="Start Typing......"></textarea>
+              </div>
+              
+            </div>
+           
+      
+    </div>
+    <div class="modal-footer">
+      <button type="button" data-dismiss="modal" class="btn btn-secondary" >Close</button>
+      <button type="submit" class="btn btn-primary" >Post</button>
+    </div>
+  </form>
+      </div>
+     </div>     
+    </div>
 
 
 
@@ -576,96 +688,6 @@
 
 
 
-<!-- Profile Modal-->
-
-
-<div class="modal fade"  id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalToggle" aria-hidden="true">
- 
-  <div class="modal-dialog modal-xl" role="document">
- 
-    <div class="modal-content">
- 
-      <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalToggle">{{alumni.email}}'s Profile </h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      </div>
-     <div class="modal-body">
-        
-      
-      <form id="updateprofile" method="post" enctype="multipart/form-data"> {% csrf_token %}
-        <div class="root">
-        <div class="myframe">
-            <div class="row" style="display:flex;margin-bottom:10px;font-size:14px;font-weight:bold;letter-spacing:1px;justify-content:center;align-items:center;">
-               
-               Alumni
-            </div>
-           
-            <div class="row gap">
-              <div class="col">
-                <Select id="collegeid" name="collegeid"   class="form-control" >
-                  <option  selected disabled >-select college-</option>
-                  {% for data in college %}
-                  <option value="{{data.id}}"  {% if alumni.collegeid.id == data.id %} selected {% endif %} >{{data.name}}</option>
-                  {% endfor %}
-              </Select>
-               </div>
-            </div>
-            <div class="row gap">
-              <div class="col">
-              <input type="text" name="name" id="name" class="form-control" value="{{alumni.name}}" placeholder="Full Name">
-               </div>
-            </div>
-            <div class="row gap">
-              <div class="col">
-              <input type="email" name="email" id="email" class="form-control" value="{{alumni.email}}" placeholder="Email" >
-               </div>
-            </div>
-            <div class="row gap">
-              <div class="col">
-              <input type="tel" name="phone" id="phone" class="form-control" value="{{alumni.phone}}" pattern="[0-9]{10}" placeholder="Phone" >
-               </div>
-            </div>
-            <div class="row gap">
-              <div class="col">
-                <Select id="passoutyear" name="passoutyear"   class="form-control">
-                  <option  selected disabled >Passout Year</option>
-                  {% for data in year %}
-                  <option value="{{data.year}}"  {% if alumni.passout_year == data.year %} selected {% endif %} >{{data.year}}</option>
-                  {% endfor %}
-              </Select>
-               </div>
-            </div>
-            <div class="row gap">
-              <div class="col">
-              <input type="text" name="exp" id="exp" value="{{alumni.experience}}" class="form-control" placeholder="Experience in years">
-               </div>
-            </div>
-            <div class="row gap">
-              <div class="col">
-              <input type="text" name="currentjob" id="currentjob" value="{{alumni.current_job}}" class="form-control" placeholder="Current Job">
-               </div>
-            </div>
-            
-          </form>  
-      
-      <div class="modal-footer">
-        <div class="row gap">
-          <div class="col btnstyle">
-            <button type="Submit" class="btn btn-success w-100" >Update</button>
-          </div>
-          
-      </div>
-    </div>
-     </div>     
-    </div>
-  </div>
-  
-  
-      <!-- /.container-fluid -->
-
-
 
 
       <script>
@@ -710,6 +732,34 @@
 
 
 
+          $("#articles").submit(function (e) {
+            // preventing from page reload and default actions
+            e.preventDefault();
+            // serialize the data for sending the form data.
+            var serializedData = $(this).serialize();
+            
+            // make POST ajax call
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'alumni-postarticle' %}",
+                data: serializedData,
+                success: function (response) {
+                  // console.log(response)
+                  window.location.reload();
+                  alert("Posted Successfully")
+        
+                  
+                },
+                error: function (response) {
+                    // alert the error if any error occured
+                    //alert(response["responseJSON"]["error"]);
+                    alert("Some Unknown Error Occured Please try after sometime..")
+                    window.location.reload();
+                }
+            })
+        })
+
+
 
 
 
@@ -743,6 +793,60 @@
             })
         })
         
+
+
+
+
+
+
+
+
+
+        function uploadfile(){
+
+          var data = new FormData();
+          data.append("upload",$("input[id^='upload']")[0].files[0]);
+          
+          data.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+          
+          $.ajax({
+            method:"POST",
+            url:"/alumni-post/",
+            processData: false,
+            contentType:false,
+            mimeType: "multipart/form-data",
+            data:data,
+            success: function (response) {
+              // console.log(response)
+              window.location.reload();
+              alert("Picture Updated Successfully");
+                
+          
+              
+            },
+            error: function (response) {
+                // alert the error if any error occured
+                //alert(response["responseJSON"]["error"]);
+                alert("Some Unknown Error Occured Please try after sometime..")
+                window.location.reload();
+            },
+            
+          })
+          
+          console.log("maaaa");
+          $("#profileModal").modal("show");
+          
+          
+          }
+          
+
+
+
+
+
+
+
+
         </script>
 
 

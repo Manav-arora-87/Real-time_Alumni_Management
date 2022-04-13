@@ -10,20 +10,35 @@ from django.db import models
 
 class Alumni(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    collegeid = models.ForeignKey('College', models.DO_NOTHING, db_column='CollegeID')  # Field name made lowercase.
-    name = models.CharField(db_column='Name', max_length=100)  # Field name made lowercase.
+    collegeid = models.ForeignKey('College', models.DO_NOTHING, db_column='CollegeID', blank=True, null=True)  # Field name made lowercase.
+    name = models.CharField(db_column='Name', max_length=100, blank=True, null=True)  # Field name made lowercase.
     email = models.CharField(db_column='Email', unique=True, max_length=100)  # Field name made lowercase.
-    phone = models.CharField(db_column='Phone', max_length=10)  # Field name made lowercase.
-    passout_year = models.IntegerField(db_column='Passout_year')  # Field name made lowercase.
-    experience = models.CharField(db_column='Experience', max_length=200)  # Field name made lowercase.
-    current_job = models.CharField(db_column='Current_job', max_length=200)  # Field name made lowercase.
-    verification_status = models.IntegerField(db_column='Verification_status')  # Field name made lowercase.
-    registration_status = models.IntegerField(db_column='Registration_status')  # Field name made lowercase.
+    phone = models.CharField(db_column='Phone', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    passout_year = models.IntegerField(db_column='Passout_year', blank=True, null=True)  # Field name made lowercase.
+    experience = models.CharField(db_column='Experience', max_length=200, blank=True, null=True)  # Field name made lowercase.
+    current_job = models.CharField(db_column='Current_job', max_length=200, blank=True, null=True)  # Field name made lowercase.
+    registration_status = models.IntegerField(db_column='Registration_status', blank=True, null=True)  # Field name made lowercase.
     password = models.CharField(db_column='Password', max_length=100)  # Field name made lowercase.
+    is_active = models.IntegerField(blank=True, null=True)
+    instagram = models.CharField(max_length=60, blank=True, null=True)
+    twiter = models.CharField(max_length=60, blank=True, null=True)
+    linkedin = models.CharField(max_length=60, blank=True, null=True)
+    github = models.CharField(max_length=60, blank=True, null=True)
+    currentjob_location = models.CharField(max_length=200, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'alumni'
+
+
+class Articles(models.Model):
+    article = models.TextField(blank=True, null=True)
+    alumniid = models.ForeignKey(Alumni, models.DO_NOTHING, db_column='alumniid', blank=True, null=True)
+    heading = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'articles'
 
 
 class AuthGroup(models.Model):
@@ -102,6 +117,9 @@ class College(models.Model):
     city = models.CharField(db_column='City', max_length=50)  # Field name made lowercase.
     email = models.CharField(db_column='Email', max_length=100)  # Field name made lowercase.
     password = models.CharField(db_column='Password', max_length=100)  # Field name made lowercase.
+    domain = models.CharField(max_length=45)
+    posts = models.TextField(blank=True, null=True)
+    articles = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -190,3 +208,13 @@ class Passingyear(models.Model):
     class Meta:
         managed = False
         db_table = 'passingyear'
+
+
+class Posts(models.Model):
+    post = models.TextField(blank=True, null=True)
+    caption = models.TextField(blank=True, null=True)
+    alumni = models.ForeignKey(Alumni, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'posts'
