@@ -17,6 +17,7 @@ urlpatterns = [
     path('alumni-postarticle/',views.Alumnipostarticle,name='alumni-postarticle'),
     path('alumni-post/',views.Alumnipost,name='alumni-post'),
     path('alumni-updateprofile/',views.AlumniUpdateprofile,name='alumni-updateprofile'),
+    path('alumni-nstiposts/',views.Alumninstiposts,name='alumni-nstiposts'),
     path('alumni-grpchat/',views.Groupchat,name='alumni-grpchat'),
    path('activate/<uidb64>/<token>',
          views.ActivateAccountView.as_view(), name='activate'),

@@ -127,8 +127,9 @@ class College(models.Model):
 
 
 class Directorate(models.Model):
-    id = models.CharField(db_column='ID', primary_key=True, max_length=225)  # Field name made lowercase.
+    id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
     password = models.CharField(db_column='Password', max_length=225)  # Field name made lowercase.
+    email = models.CharField(unique=True, max_length=100)
 
     class Meta:
         managed = False
@@ -202,6 +203,15 @@ class Events(models.Model):
         db_table = 'events'
 
 
+class Nstiposts(models.Model):
+    post = models.TextField(blank=True, null=True)
+    did = models.ForeignKey(Directorate, models.DO_NOTHING, db_column='did', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'nstiposts'
+
+
 class Passingyear(models.Model):
     year = models.IntegerField(blank=True, null=True)
 
@@ -218,3 +228,12 @@ class Posts(models.Model):
     class Meta:
         managed = False
         db_table = 'posts'
+
+
+class Student(models.Model):
+    emailid = models.CharField(unique=True, max_length=45, blank=True, null=True)
+    password = models.CharField(max_length=225, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'student'

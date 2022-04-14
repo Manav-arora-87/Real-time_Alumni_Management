@@ -77,7 +77,7 @@
 
 
 
-<body id="body" style="margin-left:300px;">
+<body id="body" style="margin-left:300px;margin-right:20px;">
   
    
   <!-- Topbar -->
@@ -190,7 +190,7 @@
 
 
       <div class="col-xl-3 col-sm-6  mb-4">
-        
+        <a href="/ ">
         <div class="icon-card-primary" >
           <div class="card-body">
               <div class="d-flex align-items-center">
@@ -203,41 +203,12 @@
           </div>
          
         </div>
+      </a>
       </div>
     
-      <div class="col-xl-3 col-sm-6  mb-4">
-        
-        <div class="icon-card-primary" >
-          <div class="card-body">
-              <div class="d-flex align-items-center">
-                <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
-                  <img src="/static/job.png" alt="jobs" class="myicon" />
-                </div>
-                <p class="font-weight-medium mb-0">Create Post</p>
-              </div>
-            
-          </div>
-         
-        </div>
-      </div>
+      
     
-    
-      <div class="col-xl-3 col-sm-6  mb-4">
-        
-        <div class="icon-card-primary" >
-          <div class="card-body">
-              <div class="d-flex align-items-center">
-                <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
-                  <img src="/static/job.png" alt="jobs" class="myicon" />
-                </div>
-                <p class="font-weight-medium mb-0">NSTI Jobs</p>
-              </div>
-            
-          </div>
-         
-        </div>
-      </div>
-     
+      
     
     
     
@@ -266,18 +237,7 @@
                           {% endfor %}
                 </select>
               </div>
-              <div class="mr-2" style="display: inline-block;">
-                <label for="Selectyear">Verifictation Status</label>
-                <select class="form-control" id="status" name="status" style="width: 200px;" required>
-
-                  <option value="3"> All Data </option>
-                  
-                  <option value="1"  {% if status == 1 %} selected {% endif %}  >Verified</option>
-                  <option value="0"  {% if status == 0 %} selected {% endif %}  >Not Verified</option>
-                         
-                          
-                </select>
-              </div>
+              
              
 
              
@@ -312,7 +272,6 @@
               <th>Experience</th>
               <th>Passout Year</th>
               <th>Send Mail</th>
-              {% comment %} <th>Verifictation Status</th> {% endcomment %}
             </tr>
           </thead>
           <tbody>
@@ -327,21 +286,6 @@
           
             <td> <button data-toggle="modal" data-target="#mailCompose" class="btn btn-info" onclick="fillmail('{{data.email}}')"> <i class="fas fa-fw fa-paper-plane"></i></button>
            </td>
-            {% comment %} <td>
-              {% csrf_token %}
-              <a style="font-size: 15px; font-weight: bold;margin-top: -8px;">
-                {% if data.verification_status == 1 %}
-                <div class="btn btn-success" style="align-self: center;"
-                  onclick="changestatus('{{ data.verification_status }}','{{data.id}}')">
-                  Verified</div>
-                {% endif %}
-                {% if data.verification_status == 0 %}
-                <div class="btn btn-danger"
-                  onclick="changestatus('{{ data.verification_status }}','{{data.id}}')">
-                  Not Verified</div>
-                {% endif %}
-              </a>
-            </td> {% endcomment %}
             
             </tr>
             {% endfor %}
@@ -357,6 +301,124 @@
 
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg-dark text-center text-white">
+  <!-- Grid container -->
+  <div class="container p-4">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+     
+
+      <!-- Twitter -->
+      <a class="btn btn-outline-light btn-floating m-1" href="{{alumni.twiter}}" role="button"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+     
+
+      <!-- Instagram -->
+      <a class="btn btn-outline-light btn-floating m-1" href="{{alumni.instagram}}" role="button"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a class="btn btn-outline-light btn-floating m-1" href="{{alumni.linkedin}}" role="button"
+        ><i class="fab fa-linkedin-in"></i
+      ></a>
+
+      <!-- Github -->
+      <a class="btn btn-outline-light btn-floating m-1"  href="{{alumni.github}}" role="button"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Form -->
+    <section class="">
+      <form action="">
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+          <!--Grid column-->
+          <div class="col-auto">
+            <p class="pt-2">
+              <strong>Sign up for our newsletter</strong>
+            </p>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-5 col-12">
+            <!-- Email input -->
+            <div class="form-outline form-white mb-4">
+              <input type="email" id="form5Example21" class="form-control" />
+              <label class="form-label" for="form5Example21">Email address</label>
+            </div>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-auto">
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-outline-light mb-4">
+              Subscribe
+            </button>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </form>
+    </section>
+    <!-- Section: Form -->
+
+   
+
+    <!-- Section: Links -->
+    <section class="">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col">
+          
+          <ul class="list-unstyled mb-0">
+            <li>You are logged in as
+              <a href="/collegelogout" class="text-white"> {{clgname}} (Log out)</a>
+            </li>
+            <li>
+              <a href="#!" class="text-white">Terms and Conditions</a>
+            </li>
+          </ul>
+        </div>
+
+
+        
+      </div>
+      <!--Grid row-->
+    </section>
+    <!-- Section: Links -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2022 Copyright:
+    <a class="text-white" href="/ ">DTE-PORTAL</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
 
 
 

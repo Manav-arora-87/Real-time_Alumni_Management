@@ -78,7 +78,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title> Alumni Dashboard </title>
+  <title> Student Dashboard </title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/stylemain.css">
 
@@ -111,17 +111,16 @@
  
  <!-- Page level custom scripts -->
 
+ 
  <div id="fb-root"></div>
  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v13.0" nonce="xXJpUjNu"></script>
 
 
-
 </head>
-{% include "sidebar_alumni.html" %}
 
 
 
-<body id="body" style="margin-left:300px;margin-right:20px;">
+<body id="body" style="margin-left:20px;margin-right:20px;">
   
    
   <!-- Topbar -->
@@ -134,23 +133,7 @@
       <a class="" style="cursor: pointer;" onclick="toggleSidebar()"><i class="fas fa-fw fa-lg fa-bars"></i></a>
     </span>
 
-    <script>
-      function toggleSidebar()
-      {
-        $("#mySidenav").fadeToggle();
-        
-        var a=$("#body").css('margin-left');
-        
-        if(a=='300px'){
-          $("#body").css('margin-left','-=300px');
-
-        }
-        else{
-        $("#body").css('margin-left','+=300px');
-        }
-      }
-    </script>
-
+    
     <style>
       @media only screen and (max-width: 600px) {
         #mySidenav{display: none;}
@@ -159,7 +142,6 @@
 
     <marquee style="font-family: Comic Sans MS; color: red">
       <i>"Mission to Innovate Technology for Society."</i>
-      {% comment %} <img src="http://office.praedicoglobalresearch.com/public/img/smiley.png" width="50px"> {% endcomment %}
     </marquee>
     <!-- Topbar Navbar -->
 
@@ -168,38 +150,6 @@
 
 
 
-
-
-    <ul class="navbar-nav ml-auto">
-
-      <div class="topbar-divider d-flex d-sm-block"></div>
-
-      <!-- Nav Item - User Information -->
-      <li class="nav-item dropdown no-arrow" style="width:150px">
-          
-        <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            
-            <span class="ml-2 d-flex d-lg-inline text-gray-700 small"> {{alumni.email}}</span>
-          
-                </a>
-
-     
-        <!-- Dropdown - User Information -->
-        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-         
-          <a class="dropdown-item"  href="#" data-toggle="modal" data-target="#passwordModal">
-            <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
-            Change Password
-          </a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-            Logout
-          </a>
-        </div>
-      </li>
-
-    </ul>
 
   </nav>
   <!-- End of Topbar -->
@@ -210,94 +160,77 @@
 
 
 
-  <button data-toggle="modal" data-target="#eventModal" style="float:right;margin-right:40px;" type="button" class="btn btn-primary position-relative">
-    Events Organized by College
-    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-      99+
-    </span>
-  </button>
-  
-<h1>Alumni Dashboard </h1><br><br>
+ 
+<h1>Student Dashboard </h1>
+<a href="/student-alumniprofiles/"><button  type="button" class="btn btn-primary">Alumni Profiles</button></a>
+<a href="/student-dashboard/"><button  type="button" class="btn btn-primary">Posts & Articles</button></a>
 
 
 
-<div class="row">
+
   
 
 
-  <div class="col-xl-3 col-sm-6  mb-4">
-    
-    <div class="icon-card-primary" >
-      <div class="card-body">
-          <div class="d-flex align-items-center">
-            <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
-              <img src="/static/job.png" alt="jobs" class="myicon" />
+    <div class="container mt-4 mb-5">
+        <div class="d-flex justify-content-center row">
+            <div class="col-md-8">
+                <div class="feed p-2">
+                   {% for article in articles %}
+                    
+                    <div class="bg-white border mt-2">
+                        <div>
+                            <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
+                                <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" width="45">
+                                    <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">{{alumni.name}}</span></div>
+                                </div>
+                               
+                              
+                                <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center feed-text px-2">
+                          <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">{{article.heading}}</span></div>
+                      </div>
+                        <div class="p-2 px-3"><span>{{article.article}}</span></div>
+                        <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
+                        
+                        <div class="fb-comments" data-href="http://127.0.0.1:8000/student-dashboard/{{article.id}}" data-width="" data-numposts="5"></div>
+                        {% comment %} <div class="fb-comments" data-href="http://127.0.0.1:8000/student-dashboard/" data-width="" data-numposts="500"></div> {% endcomment %}
+                    </div>
+                    {% endfor %}
+      
+      
+                    {% for post in posts %}
+      
+                    <div class="bg-white border mt-2">
+                        <div>
+                            <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
+                                <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" width="45">
+                                    <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">{{alumni.name}}</span></div>
+                                </div>
+                                <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
+                            </div>
+                        </div>
+                        <div class="feed-image p-2 px-3"><img class="img-fluid img-responsive" src="/static/posts/{{post.post}}"></div>
+                        <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
+                    </div>
+               
+                    {% endfor %}
+      
+      
+                  </div>
             </div>
-            <p class="font-weight-medium mb-0">Home Page</p>
-          </div>
-        
+        </div>
       </div>
-     
-    </div>
-  </div>
-  <div class="col-xl-3 col-sm-6  mb-4">
+      
+
+
+
     
-    <div class="icon-card-primary" >
-      <div class="card-body">
-          <div class="d-flex align-items-center">
-            <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
-              <img src="/static/job.png" alt="jobs" class="myicon" />
-            </div>
-            <a data-toggle="modal" data-target="#articleModal">
-            <p class="font-weight-medium mb-0"  >Write an Article</p>
-            </a>
-          </div>
-        
-      </div>
-     
-    </div>
-  </div>
-  <div class="col-xl-3 col-sm-6  mb-4">
-    
-    <div class="icon-card-primary" >
-      <div class="card-body">
-          <div class="d-flex align-items-center">
-            <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
-              <img src="/static/job.png" alt="jobs" class="myicon" />
-            </div>
-            <a data-toggle="modal" data-target="#postModal">
-            <p class="font-weight-medium mb-0">Create Post</p>
-            </a>
-          </div>
-        
-      </div>
-     
-    </div>
-  </div>
-
-
-  <div class="col-xl-3 col-sm-6  mb-4">
-    
-    <div class="icon-card-primary" >
-      <a href="/alumni-nstiposts">
-      <div class="card-body">
-          <div class="d-flex align-items-center">
-            <div class="icon mb-0 mb-md-2 mb-xl-0 mr-2">
-              <img src="/static/job.png" alt="jobs" class="myicon" />
-            </div>
-            <p class="font-weight-medium mb-0">NSTI Jobs</p>
-          </div>
-        
-      </div>
-    </a>
-     
-    </div>
-  </div>
-  
-
-
-
 </div>
+
+
+    
  
 
 
@@ -314,58 +247,6 @@
 
 
 
-<div class="container mt-4 mb-5">
-  <div class="d-flex justify-content-center row">
-      <div class="col-md-8">
-          <div class="feed p-2">
-             {% for article in articles %}
-              
-              <div class="bg-white border mt-2">
-                  <div>
-                      <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
-                          <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" width="45">
-                              <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">{{alumni.name}}</span></div>
-                          </div>
-                         
-                        
-                          <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
-                      </div>
-                  </div>
-                  <div class="d-flex flex-row align-items-center feed-text px-2">
-                    <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">{{article.heading}}</span></div>
-                </div>
-                  <div class="p-2 px-3"><span>{{article.article}}</span></div>
-                  <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
-                  <div class="fb-comments" data-href="http://127.0.0.1:8000/student-dashboard/{{article.id}}" data-width="" data-numposts="5"></div>
-
-              </div>
-              {% endfor %}
-
-
-              {% for post in posts %}
-
-              <div class="bg-white border mt-2">
-                  <div>
-                      <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
-                          <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" width="45">
-                              <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">{{alumni.name}}</span></div>
-                          </div>
-                          <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
-                      </div>
-                  </div>
-                  <div class="feed-image p-2 px-3"><img class="img-fluid img-responsive" src="/static/posts/{{post.post}}"></div>
-                  <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
-                  <div class="fb-comments" data-href="http://127.0.0.1:8000/student-dashboard/{{post.id}}" data-width="" data-numposts="50"></div>
-
-              </div>
-         
-              {% endfor %}
-
-
-            </div>
-      </div>
-  </div>
-</div>
 
 
 

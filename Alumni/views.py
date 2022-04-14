@@ -6,7 +6,7 @@ from django.db.models import Q,Count
 from django.http import HttpResponseRedirect
 import bcrypt
 import uuid,os
-from directorate.models import Alumni,College,Passingyear,Events,Articles,Posts
+from directorate.models import Alumni,College,Passingyear,Events,Articles,Posts,Nstiposts
 from datetime import *
 from django.core.mail import EmailMultiAlternatives
 from Alumni_Tracking_System.settings import EMAIL_HOST_USER
@@ -180,6 +180,25 @@ class ActivateAccountView(View):
 
 def is_ajax(request):
     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
+
+
+
+
+def Alumninstiposts(request):
+    
+    try:
+        result = request.session['Alumni']
+        posts=reversed(Nstiposts.objects.all())
+        alumni=Alumni.objects.get(id=result)
+       
+        articles=reversed(Articles.objects.filter(alumniid__isnull=True))
+        
+        return render(request, "Alumni_nsti.html",{'alumni':alumni,'posts':posts,'articles':articles})
+    except  Exception as e:
+        print(e)
+        Logout(request) 
+        return redirect('directorate-login')
 
 
 
