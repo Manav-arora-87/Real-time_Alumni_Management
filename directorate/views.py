@@ -43,6 +43,7 @@ def CheckDirectorateLogin(request):
              return render(request, "LoginTemplates/DirectorateLogin.html", { 'msg': 'Invalid Userid or Password'})
 
     except Exception as e:
+          print(e)
           Logout(request) 
           return render(request, "LoginTemplates/DirectorateLogin.html", {'msg': 'Server Error'})
 

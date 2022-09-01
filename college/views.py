@@ -41,6 +41,7 @@ def CheckCollegeLogin(request):
 
     except Exception as e:
           Logout(request) 
+          print(e)
           return render(request, "LoginTemplates/CollegeLogin.html", {'msg': 'Server Error'})
 
 def Collegedashboard(request):
