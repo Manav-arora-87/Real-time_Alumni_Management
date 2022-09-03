@@ -90,7 +90,7 @@ def NSTIjob(request):
         print(picture)
         filename = str(uuid.uuid4())+picture.name[picture.name.rfind('.'):]
         t=Nstiposts.objects.create(post=filename,did_id=result)
-        F = open('F:/REALTIME_ALUMNI_MANAGEMENT/assets/posts/'+filename,"wb")
+        F = open('D:/REAL-TIME_ALUMNI_MANAGEMENT/assets/posts/'+filename,"wb")
         for chunk in picture.chunks():
              F.write(chunk)
              F.close()
@@ -201,7 +201,7 @@ def EventSubmit(request):
         event=str(efile)
         t=Events.objects.create(eventfile=event,cdid=0)   
 
-        F = open('F:/DareToCode/Alumni_Tracking_System/assets/events/'+event,"wb")
+        F = open('D:/REAL-TIME_ALUMNI_MANAGEMENT/assets/events/'+event,"wb")
       
         
        

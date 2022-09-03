@@ -256,7 +256,7 @@ def Alumnipost(request):
         picture = request.FILES['upload']
         filename = str(uuid.uuid4())+picture.name[picture.name.rfind('.'):]
         t=Posts.objects.create(post=filename,alumni_id=result)
-        F = open('F:/REALTIME_ALUMNI_MANAGEMENT/assets/posts/'+filename,"wb")
+        F = open('D:/REAL-TIME_ALUMNI_MANAGEMENT/assets/posts/'+filename,"wb")
         for chunk in picture.chunks():
             F.write(chunk)
             F.close()

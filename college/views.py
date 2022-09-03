@@ -14,9 +14,10 @@ from datetime import *
 # Create your views here.
 def CollegeLogin(request):
     try:
-        result = request.session['college']
+        result = request.session['College']
         return redirect("college-dashboard")
     except Exception as e:
+        print(e)
         return render(request,'LoginTemplates/CollegeLogin.html')
 
 def Logout(request):
@@ -171,7 +172,7 @@ def ClgEventSubmit(request):
         event=str(efile)
         t=Events.objects.create(eventfile=event,cdid=result)   
 
-        F = open('F:/DareToCode/Alumni_Tracking_System/assets/events/'+event,"wb")
+        F = open('D:/REAL-TIME_ALUMNI_MANAGEMENT/assets/events/'+event,"wb")
       
         
        
